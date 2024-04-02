@@ -14,7 +14,7 @@ trait ExpSql {
 
   def updateExpense(id: ExpId, expense: Expense): ConnectionIO[Int]
 
-  def deleteExpense(id: ExpId): ConnectionIO[Int]
+  def deleteExpense(id: ExpId): ConnectionIO[Either[ExpNotFound, Unit]]
 
 }
 
@@ -55,9 +55,9 @@ object ExpSql {
       case _ => 1
     }
 
-    override def deleteExpense(id: ExpId): ConnectionIO[Int] = deleteSql(id).run.map {
-      case 0 => 0
-      case _ => 1
+    override def deleteExpense(id: ExpId): ConnectionIO[Either[ExpNotFound, Unit]] = deleteSql(id).run.map {
+      case 0 => ExpNotFound(id).asLeft
+      case _ => ().asRight
     }
   }
 

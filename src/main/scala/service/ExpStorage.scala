@@ -49,11 +49,11 @@ object ExpStorage {
         .deleteExpense(id)
         .transact(transactor)
         .attempt
-        .map(_.leftMap(InternalError.apply)) /*{
+        .map {
           case Left(th) => InternalError(th).asLeft
           case Right(Left(error)) => error.asLeft
           case _ => ().asRight
-        }*/
+        }
     }
 
   doobie.free.connection.WeakAsyncConnectionIO
