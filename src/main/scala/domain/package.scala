@@ -33,7 +33,7 @@ package object domain {
   case class ExpAm(value: Double)
 
   object ExpAm {
-    implicit val read: Read[ExpId] = Read[Long].map(ExpAm.apply)
+    implicit val read: Read[ExpId] = Read[Double].map(ExpAm.apply)
     implicit val schema: Schema[ExpAm] =
       Schema.schemaForDouble.map(long => Some(ExpAm(long)))(_.value)
     implicit val codec: Codec[String, ExpAm, CodecFormat.TextPlain] =

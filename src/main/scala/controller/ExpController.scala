@@ -11,9 +11,9 @@ trait ExpController[F[_]] {
 
   def getEnd: ServerEndpoint[Any, F]
 
-  def updateEnd: ServerEndpoint[Any, F]
+  def updateEnd(): ServerEndpoint[Any, F]
 
-  def deleteEnd: ServerEndpoint[Any, F]
+  def deleteEnd(): ServerEndpoint[Any, F]
 
   def allEndpoints: List[ServerEndpoint[Any, F]]
 }
