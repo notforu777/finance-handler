@@ -30,12 +30,12 @@ object ExpController {
         storage.get(expId).run(ctx)
     }
 
-    override def updateEnd: ServerEndpoint[Any, IO] = Endpoints.update.serverLogic {
+    override def updateEnd(): ServerEndpoint[Any, IO] = Endpoints.update.serverLogic {
       case (expId: ExpId, ctx, exp)  =>
         storage.update(expId, exp).run(ctx)
     }
 
-    override def deleteEnd: ServerEndpoint[Any, IO] = Endpoints.delete.serverLogic {
+    override def deleteEnd(): ServerEndpoint[Any, IO] = Endpoints.delete.serverLogic {
       case (expId: ExpId, ctx) =>
         storage.delete(expId).run(ctx)
     }
@@ -43,8 +43,8 @@ object ExpController {
     override def allEndpoints: List[ServerEndpoint[Any, IO]] = List(
       createEnd,
       getEnd,
-      updateEnd,
-      deleteEnd
+      updateEnd(),
+      deleteEnd()
     )
   }
 
