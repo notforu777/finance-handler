@@ -1,1 +1,1 @@
-## CRUD для ведения расходов
+## crud for finance
