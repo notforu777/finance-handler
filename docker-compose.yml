@@ -4,8 +4,8 @@ services:
   postgresdb:
     image: postgres
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: root
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       PGDATA: /data/postgres
       POSTGRES_DB: expenses
     ports:

@@ -1,0 +1,12 @@
+# Project exclude paths
+/project/project/target/
+/project/target/
+/target/
+/.idea/
+/.bsp/
+/project/
+/.metals/
+/.lsp/
+/.clj-kondo/
+/.vscode/
+/.bloop/

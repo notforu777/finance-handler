@@ -18,7 +18,7 @@ object Application extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] =
     (for {
-      _ <- Resource.eval(logger.info("Starting todos service...."))
+      _ <- Resource.eval(logger.info("Starting finance service...."))
 
       config <- Resource.eval(Config.load)
       transactor = Transactor.fromDriverManager[ContextualIO](

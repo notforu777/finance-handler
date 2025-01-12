@@ -23,7 +23,7 @@ object ExpStorage {
 
     new ExpStorage[F] {
       override def create(exp: Expense): F[Either[AppError, Expense]] = expSql
-        .createExpense(exp)
+        .createExpense(exp.id, exp.description, exp.amount)
         .transact(transactor)
         .attempt
         .map {
@@ -40,7 +40,7 @@ object ExpStorage {
 
 
       override def update(id: ExpId, exp: Expense): F[Either[InternalError, Int]] = expSql
-        .updateExpense(id, exp)
+        .updateExpense(id, exp.description, exp.amount)
         .transact(transactor)
         .attempt
         .map(_.leftMap(InternalError.apply))
